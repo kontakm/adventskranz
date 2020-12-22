@@ -100,7 +100,7 @@ else
      full_path=$(realpath "$0")
      dir_path=$(dirname "$full_path")
 
-     display_center "$dir_path""/candles/ad""$CANDLE_NUM"".txt"
+     cat "$dir_path""/candles/ad""$CANDLE_NUM"".txt"
      exit 0
 fi
 
