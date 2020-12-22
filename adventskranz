@@ -31,10 +31,10 @@ display_center(){
 candlesum(){
   year=$(date +%Y)
   today=$(date +%s)
-  christmas=$(date -d $year-12-24 +%s)
+  christmas=$(date -d "$year""-12-24" +%s)
   
   i=0
-  while [ $(date +%u --date "$year-12-24 -$i days") != "7" ]; do
+  while [ "$(date +%u --date "$year-12-24 -$i days")" != "7" ]; do
     i=$(($i+1))
     fourthad_day=$(date +%d --date "$year-12-24 -$i days")
   done
@@ -48,17 +48,17 @@ candlesum(){
   firstad_month=$(date +%m --date "$year-$secondad_month-$secondad_day -1 week")
   
   
-  if [ $today -ge $christmas ]; then
+  if [ "$today" -ge "$christmas" ]; then
     echo 0
-  elif [ $today -lt $christmas ] && [ $today -ge $(date --date $year-12-$fourthad_day +%s) ]; then
+  elif [ "$today" -lt "$christmas" ] && [ "$today" -ge "$(date --date "$year""-12-""$fourthad_day" +%s)" ]; then
     echo 4
-  elif [ $today -lt $(date --date $year-12-$fourthad_day +%s) ] && [ $today -ge $(date --date $year-12-$thirdad_day +%s) ]; then
+  elif [ "$today" -lt "$(date --date "$year""-12-""$fourthad_day" +%s)" ] && [ "$today" -ge "$(date --date "$year""-12-""$thirdad_day" +%s)" ]; then
     echo 3
-  elif [ $today -lt $(date --date $year-12-$thirdad_day +%s) ] && [ $today -ge $(date --date $year-$secondad_month-$secondad_day +%s) ]; then
+  elif [ "$today" -lt "$(date --date "$year""-12-""$thirdad_day" +%s)" ] && [ "$today" -ge "$(date --date "$year""-""$secondad_month""-""$secondad_day" +%s)" ]; then
     echo 2
-  elif [ $today -lt $(date --date $year-$secondad_month-$secondad_day +%s) ] && [ $today -ge $(date --date $year-$firstad_month-$firstad_day +%s) ]; then
+  elif [ "$today" -lt "$(date --date "$year""-""$secondad_month""-""$secondad_day" +%s)" ] && [ "$today" -ge "$(date --date "$year""-""$firstad_month""-""$firstad_day" +%s)" ]; then
     echo 1
-  elif [ $today -lt $(date --date $year-$firstad_month-$firstad_day +%s) ]; then
+  elif [ "$today" -lt "$(date --date "$year""-""$firstad_month""-""$firstad_day" +%s)" ]; then
     echo 0
   fi
 }
@@ -90,17 +90,17 @@ while [ -n "$1" ]; do
     fi
 done
 
-if [ -z $CANDLE_NUM ]; then
+if [ -z "$CANDLE_NUM" ]; then
      echo please specify how many candles you want to see burn
      exit 1
-elif [ $CANDLE_NUM -gt 4 ]; then
-     echo ... then you have sleeped through Christmas! / dann hast du Weihnachten verpennt!
+elif [ "$CANDLE_NUM" -gt 4 ]; then
+     echo "... then you have sleeped through Christmas! / dann hast du Weihnachten verpennt!"
      exit 1
 else
-     full_path=$(realpath $0)
-     dir_path=$(dirname $full_path)
+     full_path=$(realpath "$0")
+     dir_path=$(dirname "$full_path")
 
-     display_center $dir_path/candles/ad$CANDLE_NUM.txt
+     display_center "$dir_path""/candles/ad""$CANDLE_NUM"".txt"
      exit 0
 fi
 
