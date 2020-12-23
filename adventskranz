@@ -27,6 +27,12 @@ display_center(){
     done < "$1"
 }
 
+prepend_spaces(){
+    while IFS= read -r line; do
+        printf "    %s\n" "$line"
+        done < "$1"
+}
+
 
 candlesum(){
   year=$(date +%Y)
@@ -100,7 +106,7 @@ else
      full_path=$(realpath "$0")
      dir_path=$(dirname "$full_path")
 
-     cat "$dir_path""/candles/ad""$CANDLE_NUM"".txt"
+     prepend_spaces "$dir_path""/candles/ad""$CANDLE_NUM"".txt"
      exit 0
 fi
 
